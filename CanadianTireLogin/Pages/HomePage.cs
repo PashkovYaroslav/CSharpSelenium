@@ -12,7 +12,6 @@ namespace CanadianTireLogin.Pages
 
         public HomePage(RemoteWebDriver driver, bool auth) : base(driver)
         {
-            this.driver = driver;
             if (auth)
             {
                 driver.Navigate().GoToUrl("http://www.canadiantire.com");

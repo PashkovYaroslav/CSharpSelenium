@@ -15,16 +15,18 @@ namespace CanadianTireLogin.Tests
         protected RemoteWebDriver driver;
         protected HomePage homePage;
         protected LoginPage loginPage;
-        protected CanadianTireLogin.Helpers.Configuration config;
+        protected CanadianTireLogin.Helpers.ProjectConfig config;
         
         public BaseTest()
         {
             this.driver = DriverFactory.GetDriver("Firefox");
+            config = new CanadianTireLogin.Helpers.ProjectConfig();
         }
 
         public BaseTest(String browser)
         {
             this.driver = DriverFactory.GetDriver(browser);
+            config = new CanadianTireLogin.Helpers.ProjectConfig();
         }
 
         [SetUp]

@@ -10,6 +10,7 @@ using OpenQA.Selenium.Remote;
 using NUnit.Framework;
 using CanadianTireLogin.Tests;
 using System.Configuration;
+using CanadianTireLogin.Helpers;
 
 namespace CanadianTireLogin
 {
@@ -21,7 +22,7 @@ namespace CanadianTireLogin
         {
             homePage = new HomePage(driver, true);
             loginPage = homePage.ClickLoginButton();
-            loginPage.SignIn(config.Login, config.Password);
+            loginPage.SignIn(ProjectConfig.Login, ProjectConfig.Password);
             loginPage.VerifyErrorMessage(ConfigurationManager.AppSettings["Error"]);
         }
     }
