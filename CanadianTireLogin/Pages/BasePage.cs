@@ -10,9 +10,9 @@ namespace CanadianTireLogin.Pages
 {
     public class BasePage
     {
-        public RemoteWebDriver driver;
+        public IWebDriver driver;
 
-        public BasePage(RemoteWebDriver driver)
+        public BasePage(IWebDriver driver)
         {
             this.driver = driver;
         }

@@ -7,33 +7,47 @@ using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using CanadianTireLogin.Helpers;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace CanadianTireLogin.Pages
 {
     public class LoginPage : BasePage
     {
-        public static readonly String EmailFieldXpath = "//li[@class='fm-sign-in-form__row']//input[@name='login']";
-        public static readonly String PasswordFieldXpath = "//li[@class='fm-sign-in-form__row']//input[@name='password']";
-        public static readonly String LoginButtonXpath = "//a[contains(@class,'form__sign-in-button')]";
-        public static readonly String ErrorMessageXpath = "//div[@class='error']";
-        public static readonly String ErrorHeaderXpath = ErrorMessageXpath + "/h3";
+        public const String EmailFieldXpath = "//li[@class='fm-sign-in-form__row']//input[@name='login']";
+        public const String PasswordFieldXpath = "//li[@class='fm-sign-in-form__row']//input[@name='password']";
+        public const String LoginButtonXpath = "//a[contains(@class,'form__sign-in-button')]";
+        public const String ErrorMessageXpath = "//div[@class='error']";
+        public const String ErrorHeaderXpath = ErrorMessageXpath + "/h3";
 
-        public LoginPage(RemoteWebDriver driver) : base(driver)
+        [FindsBy(How = How.XPath, Using = EmailFieldXpath)]
+        private IWebElement EmailField;
+
+        [FindsBy(How = How.XPath, Using = PasswordFieldXpath)]
+        private IWebElement PasswordField;
+
+        [FindsBy(How = How.XPath, Using = LoginButtonXpath)]
+        private IWebElement LoginButton;
+
+        [FindsBy(How = How.XPath, Using = ErrorHeaderXpath)]
+        private IWebElement ErrorHeader;
+
+        public LoginPage(IWebDriver driver) : base(driver)
         {
             this.driver = driver;
+            PageFactory.InitElements(driver, this);
         }
 
         public void SignIn(String login, String password)
         {
-            driver.FindElementByXPath(EmailFieldXpath).SendKeys(login);
-            driver.FindElementByXPath(PasswordFieldXpath).SendKeys(password);
-            driver.FindElementByXPath(LoginButtonXpath).Click();
+            EmailField.SendKeys(login);
+            PasswordField.SendKeys(password);
+            LoginButton.Click();
         }
 
         public void VerifyErrorMessage(String expectedText)
         {
             WaitingUtils.WaitForElementIsVisible(ErrorHeaderXpath, driver);
-            Assert.That(driver.FindElementByXPath(ErrorHeaderXpath).Text.Trim, Is.EqualTo(expectedText).IgnoreCase, "Expected text of error isn't " + expectedText);
+            Assert.That(ErrorHeader.Text.Trim, Is.EqualTo(expectedText).IgnoreCase, "Expected text of error isn't " + expectedText);
         }
     }
 }

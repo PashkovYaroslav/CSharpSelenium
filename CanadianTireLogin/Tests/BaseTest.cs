@@ -7,12 +7,13 @@ using CanadianTireLogin.Helpers;
 using CanadianTireLogin.Pages;
 using System.Configuration;
 using NUnit.Framework;
+using OpenQA.Selenium;
 
 namespace CanadianTireLogin.Tests
 {
     public class BaseTest
     {
-        protected RemoteWebDriver driver;
+        protected IWebDriver driver;
         protected HomePage homePage;
         protected LoginPage loginPage;
         protected CanadianTireLogin.Helpers.ProjectConfig config;

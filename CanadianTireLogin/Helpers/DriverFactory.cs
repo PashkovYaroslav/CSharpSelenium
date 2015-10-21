@@ -6,12 +6,13 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium;
 
 namespace CanadianTireLogin.Helpers
 {
     class DriverFactory
     {
-        public static RemoteWebDriver GetDriver(String name)
+        public static IWebDriver GetDriver(String name)
         {
             switch(name)
             {

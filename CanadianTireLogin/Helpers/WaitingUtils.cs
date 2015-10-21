@@ -10,7 +10,7 @@ namespace CanadianTireLogin.Helpers
 {
     public class WaitingUtils
     {
-        public static void WaitForElementIsVisible(String xpath, RemoteWebDriver driver)
+        public static void WaitForElementIsVisible(String xpath, IWebDriver driver)
         {
             WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 10));
             wait.Until(d => d.FindElement(By.XPath(xpath)).Displayed);
