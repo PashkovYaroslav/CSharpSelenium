@@ -12,11 +12,11 @@ namespace CanadianTireLogin.Pages
 {
     public class LoginPage : BasePage
     {
-        public static readonly String EMAIL_FIELD_XPATH = "//li[@class='fm-sign-in-form__row']//input[@name='login']";
-        public static readonly String PASSWORD_FIELD_XPATH = "//li[@class='fm-sign-in-form__row']//input[@name='password']";
-        public static readonly String LOGIN_BUTTON_XPATH = "//a[contains(@class,'form__sign-in-button')]";
-        public static readonly String ERROR_MESSAGE_XPATH = "//div[@class='error']";
-        public static readonly String ERROR_HEADER_XPATH = ERROR_MESSAGE_XPATH + "/h3";
+        public static readonly String EmailFieldXpath = "//li[@class='fm-sign-in-form__row']//input[@name='login']";
+        public static readonly String PasswordFieldXpath = "//li[@class='fm-sign-in-form__row']//input[@name='password']";
+        public static readonly String LoginButtonXpath = "//a[contains(@class,'form__sign-in-button')]";
+        public static readonly String ErrorMessageXpath = "//div[@class='error']";
+        public static readonly String ErrorHeaderXpath = ErrorMessageXpath + "/h3";
 
         public LoginPage(RemoteWebDriver driver) : base(driver)
         {
@@ -25,15 +25,15 @@ namespace CanadianTireLogin.Pages
 
         public void SignIn(String login, String password)
         {
-            driver.FindElementByXPath(EMAIL_FIELD_XPATH).SendKeys(login);
-            driver.FindElementByXPath(PASSWORD_FIELD_XPATH).SendKeys(password);
-            driver.FindElementByXPath(LOGIN_BUTTON_XPATH).Click();
+            driver.FindElementByXPath(EmailFieldXpath).SendKeys(login);
+            driver.FindElementByXPath(PasswordFieldXpath).SendKeys(password);
+            driver.FindElementByXPath(LoginButtonXpath).Click();
         }
 
         public void VerifyErrorMessage(String expectedText)
         {
-            WaitingUtils.WaitForElementIsVisible(ERROR_HEADER_XPATH, driver);
-            Assert.That(driver.FindElementByXPath(ERROR_HEADER_XPATH).Text.Trim, Is.EqualTo(expectedText).IgnoreCase, "Expected text of error isn't " + expectedText);
+            WaitingUtils.WaitForElementIsVisible(ErrorHeaderXpath, driver);
+            Assert.That(driver.FindElementByXPath(ErrorHeaderXpath).Text.Trim, Is.EqualTo(expectedText).IgnoreCase, "Expected text of error isn't " + expectedText);
         }
     }
 }

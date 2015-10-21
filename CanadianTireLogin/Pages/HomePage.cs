@@ -9,7 +9,7 @@ namespace CanadianTireLogin.Pages
 {
     public class HomePage : BasePage
     {
-        public readonly String LOGINBUTTON_XPATH = "//a[contains(@href,'login')]";
+        public readonly String LoginButtonXpath = "//a[contains(@href,'login')]";
 
         public HomePage(RemoteWebDriver driver, bool auth) : base(driver)
         {
@@ -21,7 +21,7 @@ namespace CanadianTireLogin.Pages
 
         public LoginPage ClickLoginButton()
         {
-            driver.FindElementByXPath(LOGINBUTTON_XPATH).Click();
+            driver.FindElementByXPath(LoginButtonXpath).Click();
             return new LoginPage(driver);
         }
     }
